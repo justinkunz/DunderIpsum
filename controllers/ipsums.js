@@ -33,17 +33,23 @@ module.exports = {
     return new Promise((resolve, reject) => {
       Ipsums.find({ character: { $in: choosen } })
         .then(ipsums => {
-          const randomIpsums = [];
-          const max = ipsums.length > limit ? limit : ipsums.length;
+          const randomized = ipsums
+            .map(ip => ip.quote)
+            .sort(() => 0.5 - Math.random());
 
-          while (randomIpsums.length < max) {
-            const rand = Math.floor(Math.random() * ipsums.length);
-            if (!randomIpsums.includes(ipsums[rand].quote)) {
-              randomIpsums.push(cleaned[rand].quote);
+          const combined = [];
+          let i = 0;
+          while (i < randomized.length) {
+            let combinedIpsumStr = randomized[i];
+            while (combinedIpsumStr.length < 500 && i < randomized.length) {
+              i++;
+              combinedIpsumStr += randomized[i];
             }
+            combined.push(combinedIpsumStr);
           }
 
-          resolve(randomIpsums);
+          const max = combined.length > limit ? limit : combined.length;
+          resolve(combined.slice(0, max));
         })
         .catch(reject);
     });
