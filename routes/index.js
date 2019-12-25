@@ -3,14 +3,12 @@ const db = require("../controllers/ipsums");
 module.exports = app => {
   // Get characters[] route
   app.get("/api/characters", async (req, res) => {
-    const chars = await db.findCharacters();
-    res.json(chars);
+    res.json(await db.findCharacters());
   });
 
   // Save new ipsum route
   app.post("/api/new", async (req, res) => {
-    const resp = await db.create(req.body);
-    res.json(resp);
+    res.json(await db.create(req.body));
   });
 
   // Get Ipsums on condition route
@@ -23,7 +21,6 @@ module.exports = app => {
       limit: 10
     };
 
-    const ipsums = await db.findIpsums(conditions);
-    res.json(ipsums);
+    res.json(await db.findIpsums(conditions));
   });
 };
