@@ -1,0 +1,9 @@
+.header__title {
+  font-family: "Courier Prime", monospace;
+  font-size: 60px;
+  margin-top: 40px;
+}
+
+.header__title--sub {
+  font-size: 20px;
+}
