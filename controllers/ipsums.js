@@ -49,6 +49,10 @@ module.exports = {
     });
   },
 
+  /**
+   * @param {Object} body Data to add to db
+   * @return {Object} new Db item
+   */
   create: body => {
     return new Promise((resolve, reject) => {
       Ipsums.create(body)
