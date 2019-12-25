@@ -1,6 +1,9 @@
 const { Ipsums } = require("../models");
 
 module.exports = {
+  /**
+   * @returns {Object[]} All Ipsums
+   */
   findAll: () => {
     return new Promise((resolve, reject) => {
       Ipsums.find()
@@ -9,6 +12,9 @@ module.exports = {
     });
   },
 
+  /**
+   * @returns {String[]} Unique characters Ipsums are saved for
+   */
   findCharacters: () => {
     return new Promise((resolve, reject) => {
       Ipsums.find()
@@ -18,6 +24,10 @@ module.exports = {
     });
   },
 
+  /**
+   * @param {Object} conditions Conditions to find Ipsums on
+   * @return {String[]} Random Ipsums matching conditions
+   */
   findIpsums: conditions => {
     const { choosen, limit } = conditions;
     return new Promise((resolve, reject) => {

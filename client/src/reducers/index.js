@@ -20,13 +20,11 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log("reducer called", action);
   const { type, payload } = action;
 
   switch (type) {
+    // Load Characters - On page load
     case "LOAD_CHARS":
-      console.log("load chars route");
-
       const choosen = payload.reduce((a, c) => {
         a[c] = false;
         return a;
@@ -38,12 +36,16 @@ export default (state = initialState, action) => {
         options: { ...state.options, choosen }
       };
 
+    // Load Ipsums - On Button Submit
     case "LOAD_IPSUMS":
       console.log("loading ipsums");
       return {
         ...state,
-        ipsums: payload
+        ipsums: payload,
+        copied: false
       };
+
+    // Select / Deselect Single Character
     case "TOGGLE_CHAR_SELECT":
       const choosenChars = {
         ...state.options.choosen
@@ -59,6 +61,7 @@ export default (state = initialState, action) => {
         }
       };
 
+    // Select / Deselect All Characters
     case "TOGGLE_ALL":
       const btnState = state.toggleBtn.show
         ? deselectAllToggle
@@ -75,6 +78,7 @@ export default (state = initialState, action) => {
         toggleBtn: btnState
       };
 
+    // Show Copied to Clipboard Success Msg
     case "ALERT_CLIPBOARD_COPY":
       console.log("reducee");
       return { ...state, copied: true };
