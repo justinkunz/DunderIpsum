@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Button } from "@material-ui/core";
+import { Button, withStyles } from "@material-ui/core";
 import Char from "./Char";
 import { getCharacters, toggleAll, getIpsums } from "../../actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import "./style.css";
+
+import style from "./style";
 
 class UserInputs extends Component {
   componentDidMount() {
@@ -16,28 +17,28 @@ class UserInputs extends Component {
   }
 
   render() {
-    const { choosen } = this.props.options;
+    const { classes, options } = this.props;
+    const { choosen } = options;
+    console.log(classes);
     return (
-      <div className="characters">
-        <div className="characters__selectOpt">
-          <Button
-            className="characters__selectOpt__btn"
-            variant="contained"
-            color="secondary"
-            onClick={this.props.toggleAll}
-          >
-            {this.props.toggleBtn.text}
-          </Button>
-        </div>
-        <div className="characters__box">
+      <div className={classes.wrapper}>
+        <Button
+          className={classes.selectBtn}
+          variant="contained"
+          color="secondary"
+          onClick={this.props.toggleAll}
+        >
+          {this.props.toggleBtn.text}
+        </Button>
+
+        <div className={classes.charBox}>
           {this.props.characters.map((name, i) => (
             <Char name={name} index={i} key={i} choosen={choosen[name]} />
           ))}
         </div>
-
-        <div className="characters__submit">
+        <div className={classes.submitWrapper}>
           <Button
-            className="characters__submit__btn"
+            className={classes.submitBtn}
             variant="contained"
             color="primary"
             onClick={() => this.props.getIpsums(this.props.options)}
@@ -56,4 +57,5 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({ getCharacters, toggleAll, getIpsums }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInputs);
+const StyledUserInputs = withStyles(style)(UserInputs);
+export default connect(mapStateToProps, mapDispatchToProps)(StyledUserInputs);

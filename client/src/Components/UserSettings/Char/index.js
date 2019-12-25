@@ -3,6 +3,7 @@ import { FormControlLabel, Checkbox } from "@material-ui/core";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleChar } from "../../../actions";
+import "./style.css";
 
 class Char extends Component {
   render() {
@@ -10,7 +11,13 @@ class Char extends Component {
     return (
       <FormControlLabel
         className="characters__box__individual"
-        control={<Checkbox value={index} />}
+        color="blue"
+        control={
+          <Checkbox
+            className="charcters__box__individual__icon"
+            value={index}
+          />
+        }
         label={name}
         checked={choosen}
         onChange={() => this.props.toggleChar(name)}

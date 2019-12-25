@@ -1,21 +1,20 @@
 .ipsums {
-  background-color: white;
+  background-color: #fff;
   border-radius: 20px;
   margin-top: 20px;
+  color: #212529;
 }
 
 .ipsums__btn {
-  background-color: #36c336;
+  background-color: #ffc107;
   border-radius: 20px 20px 0 0;
   padding: 10px;
-  color: #1f1c1c;
-  font-weight: 700;
+  font-weight: 500;
   transition: 0.5s;
 }
 
 .ipsums__btn:hover {
-  background-color: #099009;
-  color: #fff;
+  background-color: #ff9800;
   transition: 0.5s;
 }
 .ipsums__wrapper {
