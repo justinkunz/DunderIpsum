@@ -7,7 +7,6 @@ import {
   FormHelperText,
   FormControl,
   withStyles,
-  FormGroup,
   FormControlLabel,
   Switch
 } from "@material-ui/core";
