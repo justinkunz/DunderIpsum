@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, withStyles } from "@material-ui/core";
+import Loader from "../Loader";
 import Char from "./Char";
 import { getCharacters, toggleAll, getIpsums } from "../../actions";
 import { connect } from "react-redux";
@@ -18,9 +19,13 @@ class UserInputs extends Component {
   }
 
   render() {
-    const { classes, options } = this.props;
+    const { classes, options, isFetching } = this.props;
     const { choosen } = options;
-    console.log(classes);
+
+    if (isFetching.characters) {
+      return <Loader />;
+    }
+
     return (
       <div className={classes.wrapper}>
         <Button

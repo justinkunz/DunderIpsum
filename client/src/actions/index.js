@@ -20,8 +20,8 @@ export function toggleAll(payload) {
  * Called on page load - async fn to get character names based on available ipsums
  */
 export function getCharacters() {
-  console.log("called getCharacters");
   return async dispatch => {
+    dispatch(toggleLoader("characters"));
     const chars = await API.getChars();
     dispatch(loadChars(chars.data));
   };
@@ -44,6 +44,7 @@ export function loadChars(payload) {
  */
 export function getIpsums(payload) {
   return async dispatch => {
+    dispatch(toggleLoader("ipsums"));
     const ipsums = await API.ipsums(payload);
     dispatch(loadIpsums(ipsums.data));
   };
@@ -80,4 +81,8 @@ export function updatePCount(payload) {
  */
 export function toggleNSFW(payload) {
   return { type: "TOGGLE_NSFW", payload };
+}
+
+export function toggleLoader(payload) {
+  return { type: "TOGGLE_LOADER", payload };
 }

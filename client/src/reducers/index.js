@@ -9,7 +9,10 @@ const deselectAllToggle = {
 };
 
 const initialState = {
-  isFetching: false,
+  isFetching: {
+    characters: false,
+    ipsums: false
+  },
   options: {
     choosen: {},
     limit: 5,
@@ -35,6 +38,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         characters: payload,
+        isFetching: { ...state.isFetching, characters: false },
         options: { ...state.options, choosen }
       };
 
@@ -44,6 +48,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ipsums: payload,
+        isFetching: { ...state.isFetching, ipsums: false },
         copied: false
       };
 
@@ -91,6 +96,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         options: { ...state.options, nsfw: !state.options.nsfw }
+      };
+
+    case "TOGGLE_LOADER":
+      const updatedLoader = state.isFetching;
+
+      updatedLoader[payload] = !state.isFetching[payload];
+
+      return {
+        ...state,
+        isFetching: updatedLoader
       };
     default:
       return state;

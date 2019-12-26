@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Loader from "../Loader";
 import Indiv from "./Indiv";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CheckIcon from "@material-ui/icons/Check";
@@ -9,8 +10,9 @@ import "./style.css";
 
 class Ipsums extends Component {
   render() {
-    const { ipsums, copied } = this.props;
+    const { ipsums, copied, isFetching } = this.props;
     if (ipsums.length === 0) return <Fragment />;
+    if (isFetching.ipsums) return <Loader />;
     return (
       <div className="ipsums">
         <CopyToClipboard
