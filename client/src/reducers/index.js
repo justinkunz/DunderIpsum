@@ -1,10 +1,10 @@
 const selectAllToggle = {
-  text: "Select All",
+  text: "Select All Characters",
   show: true
 };
 
 const deselectAllToggle = {
-  text: "Deselect All",
+  text: "Deselect All Characters",
   trigger: false
 };
 
