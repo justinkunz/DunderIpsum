@@ -65,3 +65,19 @@ export function updateClipboard(payload) {
   console.log("updating clipboard");
   return { type: "ALERT_CLIPBOARD_COPY", payload };
 }
+
+/**
+ * Updates Choosen Paragraph Count
+ *
+ * @param {Integer} payload Number of paragraphs to update to
+ */
+export function updatePCount(payload) {
+  return { type: "UPDATE_P_COUNT", payload };
+}
+
+/**
+ * Toggle on/off NSFW Results
+ */
+export function toggleNSFW(payload) {
+  return { type: "TOGGLE_NSFW", payload };
+}

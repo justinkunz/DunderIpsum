@@ -29,9 +29,15 @@ module.exports = {
    * @return {String[]} Random Ipsums matching conditions
    */
   findIpsums: conditions => {
-    const { choosen, limit } = conditions;
+    const { choosen, limit, nsfw } = conditions;
+    const filters = {
+      character: { $in: choosen }
+    };
+    if (!nsfw) {
+      filters.NSFW = false;
+    }
     return new Promise((resolve, reject) => {
-      Ipsums.find({ character: { $in: choosen } })
+      Ipsums.find(filters)
         .then(ipsums => {
           const randomized = ipsums
             .map(ip => ip.quote)
@@ -43,7 +49,7 @@ module.exports = {
             let combinedIpsumStr = randomized[i];
             while (combinedIpsumStr.length < 500 && i < randomized.length) {
               i++;
-              combinedIpsumStr += randomized[i];
+              combinedIpsumStr += ` ${randomized[i]}`;
             }
             combined.push(combinedIpsumStr);
           }

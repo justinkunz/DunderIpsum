@@ -4,6 +4,7 @@ import Char from "./Char";
 import { getCharacters, toggleAll, getIpsums } from "../../actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import FilterSettings from "./FilterSettings";
 
 import style from "./style";
 
@@ -36,6 +37,7 @@ class UserInputs extends Component {
             <Char name={name} index={i} key={i} choosen={choosen[name]} />
           ))}
         </div>
+        <FilterSettings />
         <div className={classes.submitWrapper}>
           <Button
             className={classes.submitBtn}

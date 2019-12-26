@@ -11,7 +11,9 @@ const deselectAllToggle = {
 const initialState = {
   isFetching: false,
   options: {
-    choosen: {}
+    choosen: {},
+    limit: 5,
+    nsfw: false
   },
   ipsums: [],
   characters: [],
@@ -80,8 +82,16 @@ export default (state = initialState, action) => {
 
     // Show Copied to Clipboard Success Msg
     case "ALERT_CLIPBOARD_COPY":
-      console.log("reducee");
       return { ...state, copied: true };
+
+    // Change Paragraph Limit
+    case "UPDATE_P_COUNT":
+      return { ...state, options: { ...state.options, limit: payload } };
+    case "TOGGLE_NSFW":
+      return {
+        ...state,
+        options: { ...state.options, nsfw: !state.options.nsfw }
+      };
     default:
       return state;
   }
