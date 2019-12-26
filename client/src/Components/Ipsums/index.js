@@ -17,8 +17,7 @@ class Ipsums extends Component {
           text={ipsums.join("\n\n")}
           onCopy={this.props.updateClipboard}
         >
-          <div className="ipsums__btn">
-            {copied ? <CheckIcon /> : <Fragment />}
+          <div className={copied ? "ipsums__btn--copied" : "ipsums__btn"}>
             {copied ? "Copied to Clipboard" : "Copy Text"}
           </div>
         </CopyToClipboard>
