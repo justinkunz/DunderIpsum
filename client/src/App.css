@@ -4,10 +4,17 @@ body {
     "Segoe UI Symbol";
   background-color: #212529;
   color: #fff;
-  margin: 100px auto;
 }
-.App {
+.app {
   text-align: center;
   margin: auto;
   width: 50%;
+  margin: 100px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    width: 90%;
+    margin-top: 0;
+  }
 }
