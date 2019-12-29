@@ -8,17 +8,10 @@ import style from "./style";
 class Char extends Component {
   render() {
     const { index, name, choosen, classes } = this.props;
+    const { root, checked } = classes;
     return (
       <FormControlLabel
-        control={
-          <Checkbox
-            classes={{
-              root: classes.root,
-              checked: classes.checked
-            }}
-            value={index}
-          />
-        }
+        control={<Checkbox classes={{ root, checked }} value={index} />}
         label={name}
         checked={choosen}
         onChange={() => this.props.toggleChar(name)}
