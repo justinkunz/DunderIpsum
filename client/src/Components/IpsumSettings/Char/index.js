@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import { FormControlLabel, Checkbox } from "@material-ui/core";
+import { FormControlLabel, Checkbox, withStyles } from "@material-ui/core";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleChar } from "../../../actions";
-import "./style.css";
+import style from "./style";
 
 class Char extends Component {
   render() {
-    const { index, name, choosen } = this.props;
+    const { index, name, choosen, classes } = this.props;
     return (
       <FormControlLabel
-        className="characters__box__individual"
-        color="blue"
         control={
           <Checkbox
-            className="charcters__box__individual__icon"
+            classes={{
+              root: classes.root,
+              checked: classes.checked
+            }}
             value={index}
           />
         }
@@ -29,4 +30,7 @@ class Char extends Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({ toggleChar }, dispatch);
 };
-export default connect(null, mapDispatchToProps)(Char);
+
+const StyledChar = withStyles(style)(Char);
+
+export default connect(null, mapDispatchToProps)(StyledChar);

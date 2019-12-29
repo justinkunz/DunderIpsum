@@ -9,13 +9,9 @@ import FilterSettings from "./FilterSettings";
 
 import style from "./style";
 
-class UserInputs extends Component {
+class IpsumSettings extends Component {
   componentDidMount() {
     this.props.getCharacters();
-  }
-
-  componentDidUpdate() {
-    console.log(this.props);
   }
 
   render() {
@@ -64,5 +60,9 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({ getCharacters, toggleAll, getIpsums }, dispatch);
 };
 
-const StyledUserInputs = withStyles(style)(UserInputs);
-export default connect(mapStateToProps, mapDispatchToProps)(StyledUserInputs);
+const StyledIpsumSettings = withStyles(style)(IpsumSettings);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StyledIpsumSettings);

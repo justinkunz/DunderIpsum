@@ -92,12 +92,15 @@ export default (state = initialState, action) => {
     // Change Paragraph Limit
     case "UPDATE_P_COUNT":
       return { ...state, options: { ...state.options, limit: payload } };
+
+    // Toggle NSFW quote search
     case "TOGGLE_NSFW":
       return {
         ...state,
         options: { ...state.options, nsfw: !state.options.nsfw }
       };
 
+    // Toggle Loader - when loading characters or ipsums
     case "TOGGLE_LOADER":
       const updatedLoader = state.isFetching;
 

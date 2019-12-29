@@ -2,9 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Loader from "../Loader";
-import Indiv from "./Indiv";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import CheckIcon from "@material-ui/icons/Check";
 import { updateClipboard } from "../../actions";
 import "./style.css";
 
@@ -26,7 +24,9 @@ class Ipsums extends Component {
 
         <div className="ipsums__wrapper">
           {ipsums.map((ip, index) => (
-            <Indiv msg={ip} key={index} />
+            <div key={index} className="ipsums__msg">
+              {ip}
+            </div>
           ))}
         </div>
       </div>

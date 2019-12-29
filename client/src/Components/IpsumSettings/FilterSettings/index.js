@@ -51,12 +51,12 @@ class FilterSettings extends Component {
   }
 }
 
-const StyledFilters = withStyles(style)(FilterSettings);
-
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({ updatePCount, toggleNSFW }, dispatch);
 };
+
+const StyledFilters = withStyles(style)(FilterSettings);
 
 export default connect(mapStateToProps, mapDispatchToProps)(StyledFilters);

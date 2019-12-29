@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 require("./dbConfig");
 const express = require("express");

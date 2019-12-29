@@ -7,6 +7,10 @@ module.exports = app => {
     res.json(await db.findCharacters());
   });
 
+  app.get("/api/all", async (req, res) => {
+    res.json(await db.findAll());
+  });
+
   // Save new ipsum route
   app.post("/api/new", async (req, res) => {
     if (ALLOW_NEW_ENTERIES) {
