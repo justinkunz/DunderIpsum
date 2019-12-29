@@ -9,8 +9,8 @@ import "./style.css";
 class Ipsums extends Component {
   render() {
     const { ipsums, copied, isFetching } = this.props;
-    if (ipsums.length === 0) return <Fragment />;
     if (isFetching.ipsums) return <Loader />;
+    if (ipsums.length === 0) return <Fragment />;
     return (
       <div className="ipsums">
         <CopyToClipboard
