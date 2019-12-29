@@ -4,7 +4,13 @@
 
 ⚠️ Work In Progrss - Awaiting AWS Deployment ⚠️
 
-![App Screenshot](screenshots/app.png)
+###### App Homepage
+
+![App Homepage](screenshots/homepage.png)
+
+###### App with Dunder Ipsum Text
+
+![Dunder Ipsum Text](screenshots/ipsum.png)
 
 ### Tools Used:
 
