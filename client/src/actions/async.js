@@ -56,6 +56,5 @@ export function getCharacters() {
  * @param {String[]} payload Array of character names
  */
 export function loadChars(payload) {
-  console.log("called load char", payload);
   return { type: "LOAD_CHARS", payload };
 }

@@ -103,13 +103,13 @@ export default (state = initialState, action) => {
     // Toggle Loader - when loading characters or ipsums
     case "TOGGLE_LOADER":
       const updatedLoader = state.isFetching;
-
-      updatedLoader[payload] = !state.isFetching[payload];
+      updatedLoader[payload] = true;
 
       return {
         ...state,
         isFetching: updatedLoader
       };
+
     default:
       return state;
   }

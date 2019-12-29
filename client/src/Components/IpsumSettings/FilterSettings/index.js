@@ -16,7 +16,6 @@ const CustomSwitch = withStyles(style.switch)(Switch);
 
 class FilterSettings extends Component {
   render() {
-    console.log(this.props);
     const { classes, options } = this.props;
     return (
       <Fragment>
