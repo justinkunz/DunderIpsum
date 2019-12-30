@@ -32,7 +32,7 @@ To add a quote to the database, make a post request to `/api/new` with the follo
 ```
 {
 	"quote": <QUOTE TO SAVE>,
-	"character": <CHARACTER WHO SAID QUOTE>,
+	"character": <CHARACTER QUOTED>,
 	"NSFW": <BOOLEAN - IF NSFW>
 }
 ```
