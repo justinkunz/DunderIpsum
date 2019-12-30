@@ -1,6 +1,7 @@
 require("dotenv").config();
 const db = require("../controllers/ipsums");
-const { ALLOW_NEW_ENTERIES } = process.env;
+const { DB_ADD_ADMIN_KEY } = process.env;
+
 module.exports = app => {
   // Get characters[] route
   app.get("/api/characters", async (req, res) => {
@@ -13,10 +14,12 @@ module.exports = app => {
 
   // Save new ipsum route
   app.post("/api/new", async (req, res) => {
-    if (ALLOW_NEW_ENTERIES) {
+    const { authorization } = req.headers;
+
+    if (DB_ADD_ADMIN_KEY === authorization) {
       res.json(await db.create(req.body));
     } else {
-      res.json({ status: "error", msg: "No new enteries allowed" });
+      res.status(401).send("Unauthorized");
     }
   });
 
