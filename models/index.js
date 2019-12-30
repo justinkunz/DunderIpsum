@@ -1,3 +1,3 @@
 module.exports = {
-  Ipsums: require("./Ipsums")
+  Quotes: require("./Quotes")
 };

@@ -1,23 +1,24 @@
 require("dotenv").config();
-const db = require("../controllers/ipsums");
+const db = require("../controllers");
 const { DB_ADD_ADMIN_KEY } = process.env;
 
 module.exports = app => {
   // Get characters[] route
   app.get("/api/characters", async (req, res) => {
-    res.json(await db.findCharacters());
+    res.json(await db.quotes.findCharacters());
   });
 
+  // Get all quotes in db
   app.get("/api/all", async (req, res) => {
-    res.json(await db.findAll());
+    res.json(await db.quotes.findAll());
   });
 
-  // Save new ipsum route
+  // Save new quote route
   app.post("/api/new", async (req, res) => {
     const { authorization } = req.headers;
 
     if (DB_ADD_ADMIN_KEY === authorization) {
-      res.json(await db.create(req.body));
+      res.json(await db.quotes.create(req.body));
     } else {
       res.status(401).send("Unauthorized");
     }
@@ -34,6 +35,6 @@ module.exports = app => {
       nsfw
     };
 
-    res.json(await db.findIpsums(conditions));
+    res.json(await db.quotes.generateIpsums(conditions));
   });
 };

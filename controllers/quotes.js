@@ -1,25 +1,21 @@
-const { Ipsums } = require("../models");
+const { Quotes } = require("../models");
 
 module.exports = {
   /**
    * @returns {Object[]} All Ipsums
    */
-  findAll: () => {
-    return Ipsums.find();
-  },
+  findAll: () => Quotes.find(),
 
   /**
    * @returns {String[]} Unique characters Ipsums are saved for
    */
-  findCharacters: () => {
-    return Ipsums.find().distinct("character");
-  },
+  findCharacters: () => Quotes.find().distinct("character"),
 
   /**
    * @param {Object} conditions Conditions to find Ipsums on
    * @return {String[]} Random Ipsums matching conditions
    */
-  findIpsums: conditions => {
+  generateIpsums: conditions => {
     const { choosen, limit, nsfw } = conditions;
     const filters = {
       character: { $in: choosen }
@@ -28,7 +24,7 @@ module.exports = {
       filters.NSFW = false;
     }
     return new Promise((resolve, reject) => {
-      Ipsums.find(filters)
+      Quotes.find(filters)
         .then(ipsums => {
           const randomized = ipsums
             .map(ip => ip.quote)
@@ -57,6 +53,6 @@ module.exports = {
    * @return {Object} new Db item
    */
   create: body => {
-    return Ipsums.create(body);
+    return Quotes.create(body);
   }
 };
