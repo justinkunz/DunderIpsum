@@ -12,7 +12,7 @@ module.exports = {
   findCharacters: () => Quotes.find().distinct("character"),
 
   /**
-   * @param {Object} conditions Conditions to find Ipsums on
+   * @param {Object} conditions Conditions to find quotes on
    * @return {String[]} Random Ipsums matching conditions
    */
   generateIpsums: conditions => {
@@ -52,7 +52,5 @@ module.exports = {
    * @param {Object} body Data to add to db
    * @return {Object} new Db item
    */
-  create: body => {
-    return Quotes.create(body);
-  }
+  create: body => Quotes.create(body)
 };
