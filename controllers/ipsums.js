@@ -5,23 +5,14 @@ module.exports = {
    * @returns {Object[]} All Ipsums
    */
   findAll: () => {
-    return new Promise((resolve, reject) => {
-      Ipsums.find()
-        .then(resolve)
-        .catch(reject);
-    });
+    return Ipsums.find();
   },
 
   /**
    * @returns {String[]} Unique characters Ipsums are saved for
    */
   findCharacters: () => {
-    return new Promise((resolve, reject) => {
-      Ipsums.find()
-        .distinct("character")
-        .then(resolve)
-        .catch(reject);
-    });
+    return Ipsums.find().distinct("character");
   },
 
   /**
@@ -66,10 +57,6 @@ module.exports = {
    * @return {Object} new Db item
    */
   create: body => {
-    return new Promise((resolve, reject) => {
-      Ipsums.create(body)
-        .then(resolve)
-        .catch(reject);
-    });
+    return Ipsums.create(body);
   }
 };
