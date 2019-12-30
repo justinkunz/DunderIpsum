@@ -19,7 +19,7 @@
 - Material UI
 - NodeJS
 - MongoDb
-- AWS _(for auto scalling EC2 instances)_
+- AWS _(for auto scaled EC2 deployment)_
 
 ### How It Works
 
