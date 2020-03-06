@@ -44,7 +44,6 @@ export default (state = initialState, action) => {
 
     // Load Ipsums - On Button Submit
     case "LOAD_IPSUMS":
-      console.log("loading ipsums");
       return {
         ...state,
         ipsums: payload,
