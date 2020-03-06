@@ -2,7 +2,7 @@
 
 ##### A Dunder Mifflin Lorem Ipsum Generator
 
-⚠️ Work In Progrss - Awaiting AWS Deployment ⚠️
+Check it out [here](https://wuphf-io-prod.herokuapp.com/)
 
 ###### App Homepage
 
@@ -19,7 +19,6 @@
 - Material UI
 - NodeJS
 - MongoDb
-- AWS _(for auto scaled EC2 deployment)_
 
 ### How It Works
 
