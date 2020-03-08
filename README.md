@@ -36,4 +36,4 @@ To add a quote to the database, make a post request to `/api/new` with the follo
 }
 ```
 
-_Note: Your request must also include an Authorization header set to the `DB_ADD_ADMIN_KEY` environment variable._
+_Note: Your request must also include an Authorization header set to the `DB_ADD_ADMIN_KEY` environment variable. The `ALLOW_NEW` environment variable must also be set to "1"_

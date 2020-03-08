@@ -11,7 +11,8 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "server": "nodemon index.js --ignore client"
+    "server": "nodemon index.js --ignore client",
+    "add-quote": "node scripts/addQuote.js"
   },
   "keywords": [
     "d"

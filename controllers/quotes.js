@@ -1,5 +1,37 @@
 const { Quotes } = require("../models");
 
+class IpsumSet {
+  constructor(dbResults) {
+    this.quotes = dbResults.map(ip => ip.quote) || [];
+  }
+
+  shuffle() {
+    for (let i = 0; i < this.quotes.length; i++) {
+      const target = this.quotes[i];
+      const swapIndex = Math.floor(Math.random() * this.quotes.length);
+      this.quotes[i] = this.quotes[swapIndex];
+      this.quotes[swapIndex] = target;
+    }
+    return this;
+  }
+
+  makeParagraphs(paraLength, max) {
+    const arr = this.quotes;
+    const para = [];
+    let i = 0;
+
+    while (i < arr.length && para.length < max) {
+      let combinedIpsumStr = arr[i];
+      while (combinedIpsumStr.length < paraLength && i < arr.length) {
+        i++;
+        combinedIpsumStr += ` ${arr[i]}`;
+      }
+      para.push(combinedIpsumStr);
+    }
+    return para;
+  }
+}
+
 module.exports = {
   /**
    * @returns {Object[]} All Ipsums
@@ -15,37 +47,24 @@ module.exports = {
    * @param {Object} conditions Conditions to find quotes on
    * @return {String[]} Random Ipsums matching conditions
    */
-  generateIpsums: conditions => {
-    const { choosen, limit, nsfw } = conditions;
-    const filters = {
-      character: { $in: choosen }
-    };
-    if (!nsfw) {
-      filters.NSFW = false;
+  generateIpsums: async conditions => {
+    try {
+      const { choosen, limit, nsfw } = conditions;
+      const filters = {
+        character: { $in: choosen }
+      };
+      if (!nsfw) {
+        filters.NSFW = false;
+      }
+
+      const dbResults = await Quotes.find(filters);
+      const ipsums = new IpsumSet(dbResults)
+        .shuffle()
+        .makeParagraphs(300, limit);
+      return ipsums;
+    } catch (err) {
+      console.log("An error occurred", err);
     }
-    return new Promise((resolve, reject) => {
-      Quotes.find(filters)
-        .then(ipsums => {
-          const randomized = ipsums
-            .map(ip => ip.quote)
-            .sort(() => 0.5 - Math.random());
-
-          const combined = [];
-          let i = 0;
-          while (i < randomized.length) {
-            let combinedIpsumStr = randomized[i];
-            while (combinedIpsumStr.length < 500 && i < randomized.length) {
-              i++;
-              combinedIpsumStr += ` ${randomized[i]}`;
-            }
-            combined.push(combinedIpsumStr);
-          }
-
-          const max = combined.length > limit ? limit : combined.length;
-          resolve(combined.slice(0, max));
-        })
-        .catch(reject);
-    });
   },
 
   /**

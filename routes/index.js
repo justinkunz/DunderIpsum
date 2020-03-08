@@ -1,6 +1,6 @@
 require("dotenv").config();
 const db = require("../controllers");
-const { DB_ADD_ADMIN_KEY } = process.env;
+const { DB_ADD_ADMIN_KEY, ALLOW_NEW } = process.env;
 
 module.exports = app => {
   // Get characters[] route
@@ -17,7 +17,7 @@ module.exports = app => {
   app.post("/api/new", async (req, res) => {
     const { authorization } = req.headers;
 
-    if (DB_ADD_ADMIN_KEY === authorization) {
+    if (DB_ADD_ADMIN_KEY === authorization && ALLOW_NEW === "1") {
       res.json(await db.quotes.create(req.body));
     } else {
       res.status(401).send("Unauthorized");
