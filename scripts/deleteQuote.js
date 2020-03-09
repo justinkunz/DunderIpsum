@@ -3,7 +3,9 @@ const axios = require("axios");
 require("dotenv").config();
 const { BASE_URI, DB_ADD_ADMIN_KEY } = process.env;
 
-console.log({ DB_ADD_ADMIN_KEY, BASE_URI });
+/**
+ * Script to delete an existing quote
+ */
 const init = async () => {
   const allQuotes = await API.findAll();
 

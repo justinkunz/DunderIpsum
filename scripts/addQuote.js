@@ -3,6 +3,9 @@ const axios = require("axios");
 require("dotenv").config();
 const { BASE_URI, DB_ADD_ADMIN_KEY } = process.env;
 
+/**
+ * Script to add a quote
+ */
 const init = async () => {
   const currentChars = await API.currentChars();
   const answers = await inq.prompt([
