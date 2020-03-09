@@ -12,7 +12,8 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server": "nodemon index.js --ignore client",
-    "add-quote": "node scripts/addQuote.js"
+    "add-quote": "node scripts/addQuote.js",
+    "delete-quote": "node scripts/deleteQuote.js"
   },
   "keywords": [
     "d"

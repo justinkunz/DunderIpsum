@@ -2,7 +2,7 @@ const { Quotes } = require("../models");
 
 class IpsumSet {
   constructor(dbResults) {
-    this.quotes = dbResults.map(ip => ip.quote) || [];
+    this.quotes = dbResults.map(ip => ip.quote);
   }
 
   shuffle() {
@@ -15,16 +15,17 @@ class IpsumSet {
     return this;
   }
 
-  makeParagraphs(paraLength, max) {
+  makeParagraphs(paraCharLimit, max) {
     const arr = this.quotes;
     const para = [];
     let i = 0;
 
     while (i < arr.length && para.length < max) {
       let combinedIpsumStr = arr[i];
-      while (combinedIpsumStr.length < paraLength && i < arr.length) {
-        i++;
+      i++;
+      while (combinedIpsumStr.length < paraCharLimit && i < arr.length) {
         combinedIpsumStr += ` ${arr[i]}`;
+        i++;
       }
       para.push(combinedIpsumStr);
     }
@@ -64,6 +65,7 @@ module.exports = {
       return ipsums;
     } catch (err) {
       console.log("An error occurred", err);
+      return [];
     }
   },
 
@@ -71,5 +73,11 @@ module.exports = {
    * @param {Object} body Data to add to db
    * @return {Object} new Db item
    */
-  create: body => Quotes.create(body)
+  create: body => Quotes.create(body),
+
+  /**
+   * @param {String} _id ID of item to delete
+   * @returns {Integer} Item Deleted
+   */
+  delete: _id => Quotes.deleteOne({ _id })
 };
