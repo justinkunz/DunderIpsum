@@ -2,7 +2,7 @@
   "name": "wuphf.io",
   "version": "1.0.0",
   "description": "A Dunder Mifflin Lorem Ipsum Generator",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "npm index.js",
@@ -16,7 +16,8 @@
     "delete-quote": "node scripts/deleteQuote.js"
   },
   "keywords": [
-    "d"
+    "the office",
+    "lorem ipsum"
   ],
   "author": "Justin Kunz",
   "license": "MIT",
